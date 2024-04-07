@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Xj5h4Qy36sKNOZ6ylfYIPBYaCnu0lkqNI5ZYGT/2og9yhOhCB+48jdREsGCpF9LINvqlK28Y26YGhdf2kcBM2g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\eadia\\OneDrive\\Escritorio\\Programacion\\url-shortener\\backend\\UrlShortenerApi\\UrlShortenerApi\\UrlShortenerApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eadia\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\eadia\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\eadia\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\eadia\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\eadia\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\eadia\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
