@@ -1,0 +1,42 @@
+@if(Link){
+
+<div
+class="delete-link__modal modal"
+[ngClass]="deleteLinkModalTrigger ? 'show-modal' : 'hide'"
+>
+<form>
+  <div class="header">
+    <h4>¿Deseas eliminar este link?</h4>
+    <button (click)="closeAllModals()">Cerrar</button>
+  </div>
+  <div class="form-control">
+    <label>Titulo</label>
+    <input
+      type="text"
+      placeholder="Ingresa la Url"
+      value="{{ Link.urlTitle }}"
+      disabled
+    />
+  </div>
+
+  <div class="form-control">
+    <label>Url original</label>
+    <input
+      type="text"
+      placeholder="Titulo"
+      value="{{ Link.longUrl }}"
+      disabled
+    />
+  </div>
+  <div class="actions">
+    <button
+      class="delete-btn"
+      (click)="deleteLinkById(Link.id)"
+    >
+      Eliminar
+    </button>
+    <button class="cancel-btn" (click)="closeAllModals()">Cancelar</button>
+  </div>
+</form>
+</div>
+}

@@ -1,0 +1,84 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    outline-offset: 5px;
+  
+    button {
+      background-color: red;
+      max-width: 20%;
+      color: white;
+    }
+  }
+  .modal {
+    background-color: rgba(0, 0, 0, 0.504);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 15px;
+    position: absolute;
+    z-index: 99999;
+    min-height: 100vh;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    align-self: center;
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      flex-grow: 1;
+      height: fit-content;
+      border-radius: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      // font-size: 1.3em;
+      gap: 5px;
+  
+      h4 {
+        margin: 0;
+  
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+  
+      .form-control {
+        display: flex;
+        flex-direction: column;
+        input {
+          height: 35px;
+        }
+      }
+  
+      button {
+        height: 40px;
+        width: 100%;
+        border: transparent;
+        border-radius: 5px;
+        //   background-color: gray;
+      }
+    }
+  }
+
+.delete-link__modal {
+    form {
+      .actions {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        .delete-btn {
+          background-color: red;
+          color: white;
+        }
+  
+        .cancel-btn {
+          border: 1px solid;
+          border-color: #9be15d;
+        }
+      }
+    }
+  }

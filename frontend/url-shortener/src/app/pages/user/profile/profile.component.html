@@ -1,0 +1,77 @@
+<main class="main" [ngClass]="isModalOpen ? 'show-modal' : ''">
+  @if(newLinkModalTrigger){
+  <app-new-link-modal
+    [ngClass]="newLinkModalTrigger ? 'show-modal' : 'hide'"
+    (closeModals)="closeAllModals(); getUserLinks()"
+  ></app-new-link-modal>} 
+  
+  
+  @if(deleteLinkModalTrigger && selectedLinkIdToDelete ){
+  <app-delete-link-modal
+    [Link]="selectedLinkIdToDelete"
+    (closeModals)="closeAllModals()"
+  ></app-delete-link-modal>
+  }
+
+  <app-profile-card></app-profile-card>
+
+  <ul class="my-links__list">
+    <h2 style="margin: 0">Mis enlaces</h2>
+    <button class="new-link__btn" (click)="openNewLinkModal()">
+      Agregar nuevo link
+    </button>
+    @if(userLinks){ @for(link of userLinks;track link.id){
+    <li>
+      <div class="link-card">
+        <div class="info">
+          <div class="form-control shortUrl-div">
+            <span
+              ><a href="{{ link.shortUrl }}">{{ link.shortUrl }}</a></span
+            >
+            <button>
+              <span>Copiar</span
+              ><img src="../../../../assets/icons/copy-icon.png" />
+            </button>
+          </div>
+          <div class="form-control">
+            <label for="">Titulo</label>
+            <span
+              ><strong>{{ link.urlTitle }}</strong></span
+            >
+          </div>
+
+          <div class="form-control">
+            <label for="">Url original:</label
+            ><span class="long-url__link-span">
+              <a href="{{ link.longUrl }}">{{ link.longUrl }}</a></span
+            >
+          </div>
+          <div class="counters">
+            <div class="form-control">
+              <label for="">Visitas</label><span>{{ link.visitedTimes }}</span>
+            </div>
+
+            <div class="form-control">
+              <label for="">Ult. visita</label
+              ><span>
+                {{ link.lastTimeVisited | date : "d/M/yy hh:mm a" }}
+              </span>
+            </div>
+          </div>
+          <!-- <div class="form-control"><label for=""></label><span></span></div>
+          <div class="form-control"><label for=""></label><span></span></div> -->
+        </div>
+
+        <div class="actions">
+          <button class="delete-btn" (click)="openDeleteModal(link)">
+            Eliminar
+          </button>
+          <button class="edit-btn">Editar</button>
+        </div>
+      </div>
+    </li>
+
+    <app-divider></app-divider>
+    } }
+  </ul>
+</main>

@@ -1,0 +1,11 @@
+<nav class="nav-bar__container" [ngClass]="isAuth ? 'show':'hide'">
+  <button class="side-menu__btn">
+    <img src="../../../assets/icons/menu-icon.svg" />
+  </button>
+  <span><h3>Mis Links</h3></span>
+  <div class="profile-icon" [routerLink]="['juan/profile']">
+    <img
+      src="https://cdn5.vectorstock.com/i/1000x1000/23/49/new-man-avatar-icon-flat-vector-19152349.jpg"
+    />
+  </div>
+</nav>

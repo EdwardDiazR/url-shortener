@@ -1,0 +1,15 @@
+<main class="feed-container">
+
+  <app-profile-card></app-profile-card>
+  <app-divider style="justify-self: center;"></app-divider>
+
+  <div class="links-section">
+    <span>Enlaces</span>
+    <ul class="links-list">
+      @for( link of links; track link.id){
+      <li><app-link-item [Link]="link"></app-link-item></li>
+
+      }
+    </ul>
+  </div>
+</main>

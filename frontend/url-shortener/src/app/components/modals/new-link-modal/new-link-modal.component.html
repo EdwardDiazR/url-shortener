@@ -1,0 +1,24 @@
+<div
+  class="new-link__modal modal"
+  [ngClass]="newLinkModalTrigger ? 'show-modal' : 'hide'"
+>
+  <form [formGroup]="newLinkForm">
+    <div class="header">
+      <h4>Añadir nuevo link</h4>
+      <button (click)="closeAllModals()">Cerrar</button>
+    </div>
+    <div class="form-control">
+      <label>Url</label>
+      <input type="text" placeholder="Ingresa la Url" formControlName="Url" />
+    </div>
+
+    <div class="form-control">
+      <label>Titulo</label>
+      <input type="text" placeholder="Titulo" formControlName="Title" />
+    </div>
+
+    <button class="add__new-link__btn" (click)="createNewLink()">
+      Agregar
+    </button>
+  </form>
+</div>
