@@ -1,26 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-:host{
-    --radius:15px;
+:host {
+  --radius: 10px;
 }
 .div {
-  background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
-  border: 1px transparent;
+  // background: linear-gradient(
+  //   to left,
+  //   hsla(60, 100%, 49%, 1) 0%,
+  //   hsla(77, 85%, 32%, 1) 100%
+  // );
+
   height: 60px;
   width: 100%;
-  padding: 2px;
+  padding: 1px;
   box-sizing: border-box;
   margin: 0;
   display: flex;
   border-radius: var(--radius);
   overflow: hidden;
-  font-size: 1.2rem;
-  box-shadow: 0px 2px 10px 1px #9ae15dd6;
+  background-color: white;
 
   .link-item__container {
-    font-family: "Caveat", cursive;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-size: 1.65rem;
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +30,6 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
-    border-radius: 5px;
 
     background-color: rgb(246, 246, 246);
     border-radius: var(--radius);

@@ -1,13 +1,20 @@
 <div class="profile-info">
   <div class="avatar-container">
     <img
-      src="https://cdn5.vectorstock.com/i/1000x1000/23/49/new-man-avatar-icon-flat-vector-19152349.jpg"
+      src="https://d2az3zd39o5d63.cloudfront.net/linkedin-profile-picture-sunglasses.jpg"
       alt=""
     />
   </div>
 
   <div class="info">
-    <span>&#64;Username</span>
-   
+    <span style="font-weight: bold">&#64;{{ username }}</span>
+
+    @if(isProfileOwner && username){
+    <button
+      class="go-to-my-profile__btn"
+      [routerLink]="['/' + username + '/profile']"
+    >
+      Ir a mi perfil</button
+    >}
   </div>
 </div>

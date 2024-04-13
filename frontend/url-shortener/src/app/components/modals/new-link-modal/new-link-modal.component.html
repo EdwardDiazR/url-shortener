@@ -7,16 +7,25 @@
       <h4>Añadir nuevo link</h4>
       <button (click)="closeAllModals()">Cerrar</button>
     </div>
+
+    <!--Url input-->
     <div class="form-control">
       <label>Url</label>
-      <input type="text" placeholder="Ingresa la Url" formControlName="Url" />
+      <input
+        type="text"
+        pInputText
+        placeholder="Ingresa la Url"
+        formControlName="Url"
+      />
     </div>
 
+    <!--Url title that will be shown to visitor-->
     <div class="form-control">
       <label>Titulo</label>
       <input type="text" placeholder="Titulo" formControlName="Title" />
     </div>
 
+    <!--Add button, (Call API)-->
     <button class="add__new-link__btn" (click)="createNewLink()">
       Agregar
     </button>

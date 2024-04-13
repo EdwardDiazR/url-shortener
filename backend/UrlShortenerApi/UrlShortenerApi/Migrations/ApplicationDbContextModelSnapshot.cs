@@ -106,6 +106,10 @@ namespace UrlShortenerApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UserId");
 
                     b.ToTable("users");

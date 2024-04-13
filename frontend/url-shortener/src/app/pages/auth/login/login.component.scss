@@ -2,13 +2,26 @@
   display: flex;
   flex-direction: column;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
-  justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  background-image: var(--BlueGradient);
   padding: 10px;
-
+}
+.brand-banner {
+  width: 100%;
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .login-title {
+    margin: 0;
+    color: white;
+  }
   .login-form {
     display: flex;
     flex-direction: column;
@@ -17,7 +30,6 @@
     margin: 5px;
     box-sizing: border-box;
     width: 100%;
-  
     gap: 10px;
     border-radius: 5px;
     max-height: 100%;
@@ -27,19 +39,40 @@
       flex-direction: column;
 
       input {
+        box-sizing: border-box;
+        padding: 0px 5px;
         font-size: 1.1em;
         height: 40px;
+        border-radius: 7px;
+        border: 2px solid gray;
+      }
+
+      input:focus {
+        outline-color: red;
+      }
+
+      input:not(:placeholder-shown) {
+        background-color: #3a85ffc4;
+        border-color: #106cff;
+        color: white;
       }
     }
 
-    button{
-        height: 40px;
-        background-color: red;
-        border: transparent;
-        border-radius: 10px;
-        font-weight: bold;
-        color: white;
+    button {
+      height: 40px;
+      background-color: red;
+      border: transparent;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
     }
-    
+
+    .register-btn {
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      border: 1px solid red;
+      width: 100%;
+    }
   }
 }

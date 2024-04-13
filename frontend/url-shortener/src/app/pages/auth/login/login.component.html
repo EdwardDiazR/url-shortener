@@ -1,15 +1,47 @@
 <main class="login-container">
- 
-  <form action="" class="login-form">
-    <span>Bienvenido a Mis Links</span>
-    <div class="form-control">
-      <label>Usuario</label><input placeholder="Usuario" />
-    </div>
-    <div class="form-control">
-      <label>Contraseña</label
-      ><input placeholder="Contraseña" type="password" />
-    </div>
+  <app-brand-banner class="brand-banner"></app-brand-banner>
+  <div class="login">
+    <h2 class="login-title">Iniciar sesion</h2>
+    <form action="" class="login-form" [formGroup]="loginForm">
 
-    <button class="login-btn">Iniciar sesion</button>
-  </form>
+      <!--Show this error if user try login and there's an BAD API RESPONSE, Ex: Username or passowrd incorrect-->
+      @if(isFormSubmitted && loginApiResponse){
+      <span style="color: red; align-self: center">{{ loginApiResponse }}</span>
+
+      }
+
+      <div class="form-control">
+        <label>Usuario</label
+        ><input placeholder="Usuario" formControlName="username" />
+
+        <!--Show error if user try to login and username is empty-->
+        @if((loginForm.touched || isFormSubmitted) && loginForm.get('username')?.errors){
+        <div class="username-error" style="color: red">
+          Debe ingresar su nombre de usuario
+        </div>
+        }
+      </div>
+      <div class="form-control">
+        <label>Contraseña</label
+        ><input
+          placeholder="Contraseña"
+          type="password"
+          formControlName="password"
+        />
+
+        <!--Show error if user try to login and password is empty-->
+        @if((loginForm.touched || isFormSubmitted) &&
+        loginForm.get('password')?.errors){
+        <div class="password-error" style="color: red">
+          Debe ingresar la contraseña
+        </div>
+        }
+      </div>
+
+      <button class="login-btn" (click)="login()">Iniciar sesion</button>
+      <button class="register-btn" style="align-self: center">
+        Registrate
+      </button>
+    </form>
+  </div>
 </main>

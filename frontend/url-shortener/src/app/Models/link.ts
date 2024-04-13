@@ -13,4 +13,8 @@ interface CreateLinkDto {
   UserId: any | null;
 }
 
-export { Link, CreateLinkDto };
+interface UrlApiResponse {
+  url: string;
+}
+
+export { Link, CreateLinkDto,UrlApiResponse };

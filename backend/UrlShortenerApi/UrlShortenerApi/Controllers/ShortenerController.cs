@@ -5,6 +5,7 @@ using System.Text;
 using UrlShortenerApi.Interfaces;
 using UrlShortenerApi.Models;
 using UrlShortenerApi.Models.DTO;
+using UrlShortenerApi.Models.DTO.Url;
 using UrlShortenerApi.Services;
 
 namespace UrlShortenerApi.Controllers
@@ -30,11 +31,11 @@ namespace UrlShortenerApi.Controllers
         }
 
         [HttpGet("get-full-url")]
-        public ActionResult GetFullUrl(string Url)
+        public ActionResult<UrlApiResponseDto> GetFullUrl(string Url)
         {
             try
             {
-                string LongUrl = _service.GetFullUrl(Url);
+                UrlApiResponseDto LongUrl = _service.GetFullUrl(Url);
                 return Ok(LongUrl);
             }
             catch (Exception ex)

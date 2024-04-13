@@ -1,6 +1,6 @@
 @if(Link){
-<div class="div">
-  <a class="link-item__container" href="{{ Link.longUrl }}">
+<div class="div" (click)="goToUrl(Link.shortUrl)">
+  <a class="link-item__container">
     {{ Link.urlTitle }}
   </a>
 </div>

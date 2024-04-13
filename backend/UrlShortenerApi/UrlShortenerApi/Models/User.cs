@@ -10,6 +10,7 @@ namespace UrlShortenerApi.Models
         public int UserId { get; set; }
         public string Username { get; set; }
         public string UserProfileLink { get; set; }
+        public string password { get; set; }
         public string DisplayName { get; set; }
         public char Gender { get; set; }
         public string Email { get; set; }

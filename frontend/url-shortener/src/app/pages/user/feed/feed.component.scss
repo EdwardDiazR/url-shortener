@@ -2,18 +2,93 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: white;
-  padding: 2px 8px;
+  gap: 10px;
+  background: var(--BlueGradient);
+  padding: 0;
   margin: 0;
+  min-height: 100vh;
 
+  .divider {
+    margin: 0px 15px;
+  }
 
-  .links-list {
+  .links-section {
     display: flex;
-    padding: 0;
-    margin: 0;
+    flex-grow: 1;
     flex-direction: column;
-    list-style: none;
-    box-sizing: border-box;
-    gap: 15px;
+    text-align: center;
+
+    .links-list {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      padding: 0;
+      margin: 0;
+      flex-direction: column;
+      list-style: none;
+      box-sizing: border-box;
+      gap: 10px;
+
+      li {
+        width: 97%;
+      }
+
+      // li:nth-child(even) {
+      //   animation: EvenNumbers 4s infinite;
+      // }
+
+      // li:nth-child(odd) {
+      //   animation: OddNumbers 4s infinite;
+      // }
+    }
+  }
+}
+
+
+
+@keyframes EvenNumbers {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes OddNumbers {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.has-errors {
+  height: 100%;
+
+  .brand-banner {
+    height: fit-content;
+    width: 100%;
+  }
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+
+    span {
+      text-align: center;
+    }
   }
 }

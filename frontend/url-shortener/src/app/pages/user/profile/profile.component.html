@@ -1,11 +1,20 @@
 <main class="main" [ngClass]="isModalOpen ? 'show-modal' : ''">
+  <div class="top-controls">
+    <button [routerLink]="['/' + username]" class="go-to-feed__btn">
+      Ir al feed
+    </button>
+    <button class="close-section__btn" (click)="logout()">Cerrar sesion</button>
+  </div>
+
+  <!--Modal to add a new Link-->
   @if(newLinkModalTrigger){
   <app-new-link-modal
     [ngClass]="newLinkModalTrigger ? 'show-modal' : 'hide'"
     (closeModals)="closeAllModals(); getUserLinks()"
-  ></app-new-link-modal>} 
-  
-  
+  ></app-new-link-modal>
+  }
+
+  <!--Modal to delete a Link-->
   @if(deleteLinkModalTrigger && selectedLinkIdToDelete ){
   <app-delete-link-modal
     [Link]="selectedLinkIdToDelete"
@@ -13,10 +22,18 @@
   ></app-delete-link-modal>
   }
 
-  <app-profile-card></app-profile-card>
+  <!--Profile card component-->
+  <app-profile-card [username]="username"></app-profile-card>
 
+  <!--Divider line-->
+  <app-divider class="divider"></app-divider>
+
+  <!--User's links-->
   <ul class="my-links__list">
-    <h2 style="margin: 0">Mis enlaces</h2>
+    <h4 style="margin: 0; align-self: center; color: white">
+      Administrar mis enlaces
+      <strong>({{ userLinks && userLinks.length }})</strong>
+    </h4>
     <button class="new-link__btn" (click)="openNewLinkModal()">
       Agregar nuevo link
     </button>
@@ -26,7 +43,11 @@
         <div class="info">
           <div class="form-control shortUrl-div">
             <span
-              ><a href="{{ link.shortUrl }}">{{ link.shortUrl }}</a></span
+              ><a 
+                style="color: blue; text-decoration: underline"
+                (click)="goToUrl(link.shortUrl)"
+                >{{ link.shortUrl }}</a
+              ></span
             >
             <button>
               <span>Copiar</span
@@ -42,13 +63,12 @@
 
           <div class="form-control">
             <label for="">Url original:</label
-            ><span class="long-url__link-span">
-              <a href="{{ link.longUrl }}">{{ link.longUrl }}</a></span
-            >
+            ><span class="long-url__link-span"> {{ link.longUrl }}</span>
           </div>
           <div class="counters">
             <div class="form-control">
-              <label for="">Visitas</label><span>{{ link.visitedTimes }}</span>
+              <label for="">Visitas</label
+              ><span>{{ link.visitedTimes | number : ".0" }}</span>
             </div>
 
             <div class="form-control">

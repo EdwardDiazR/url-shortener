@@ -1,0 +1,21 @@
+.brand-banner__container {
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background: linear-gradient(
+    90deg,
+    hsla(356, 76%, 50%, 1) 0%,
+    hsla(14, 63%, 36%, 1) 100%
+  );
+  border: none;
+  margin: 5px;
+  border-radius: 15px;
+
+  h2 {
+    color: white;
+    align-self: center;
+    margin: 0;
+  }
+}

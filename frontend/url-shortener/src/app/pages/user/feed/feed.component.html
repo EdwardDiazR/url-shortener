@@ -1,15 +1,42 @@
-<main class="feed-container">
+<main class="feed-container" [ngClass]="responseError && 'has-errors'">
+  <app-brand-banner class="brand-banner"></app-brand-banner>
+  @if(!responseError){
 
-  <app-profile-card></app-profile-card>
-  <app-divider style="justify-self: center;"></app-divider>
+  <!--Profile card component-->
+  <app-profile-card
+    [isProfileOwner]="isProfileOwner"
+    [username]="username"
+  ></app-profile-card>
 
+  <!--Divider line-->
+  <app-divider class="divider"></app-divider>
+
+  <!--Section of user's links-->
   <div class="links-section">
-    <span>Enlaces</span>
-    <ul class="links-list">
-      @for( link of links; track link.id){
-      <li><app-link-item [Link]="link"></app-link-item></li>
+    <!--If user has links, render the list -->
+    @if(links){
 
+    <!--List of user's links-->
+    <ul class="links-list">
+      <!--Iterate the list of user's links-->
+      @for( link of links; track link.id) {
+      <li>
+        <!--For each Link, render a link-item component-->
+        <app-link-item [Link]="link"></app-link-item>
+      </li>
       }
     </ul>
+    }@else {
+    <!--If there's user but there's not any link, show this message-->
+    <span>!UPS! Aun no hay enlaces disponibles</span>
+    }
   </div>
+
+  }@else{
+  <!--Show this error if there is any error in the API. Ex: User not found, etc-->
+  <div class="error-container">
+    <h2>🥹 Lo siento!</h2>
+    <span>{{ responseError }}</span>
+  </div>
+  }
 </main>

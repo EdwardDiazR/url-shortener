@@ -11,14 +11,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
+import { InputTextModule } from 'primeng/inputtext';
 import { CreateLinkDto } from '../../../Models/link';
 import { LinksService } from '../../../services/links/links.service';
 import { NgClass } from '@angular/common';
+import { UserSession } from '../../../Models/user-session';
 
 @Component({
   selector: 'app-new-link-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass,InputTextModule],
   templateUrl: './new-link-modal.component.html',
   styleUrl: './new-link-modal.component.scss',
 })
@@ -30,6 +33,7 @@ export class NewLinkModalComponent implements OnInit, OnDestroy {
 
   newLinkDto!: CreateLinkDto;
   newLinkForm!: FormGroup;
+  UserSession!: UserSession;
 
   ngOnInit(): void {
     this.newLinkForm = new FormGroup({
@@ -37,6 +41,11 @@ export class NewLinkModalComponent implements OnInit, OnDestroy {
       Title: new FormControl('', [Validators.required]),
       UserId: new FormControl(null),
     });
+    const session = localStorage.getItem('session');
+
+    if (session) {
+      this.UserSession = JSON.parse(session) as UserSession;
+    }
 
     console.log('Se monto');
   }
@@ -48,7 +57,7 @@ export class NewLinkModalComponent implements OnInit, OnDestroy {
     this.newLinkModalTrigger = false;
     this.closeModals.emit(true);
 
-    this.newLinkForm.reset()
+    this.newLinkForm.reset();
   }
 
   createNewLink() {
@@ -57,7 +66,7 @@ export class NewLinkModalComponent implements OnInit, OnDestroy {
     this.newLinkDto = <CreateLinkDto>{
       Title: this.newLinkForm.value.Title,
       Url: this.newLinkForm.value.Url,
-      UserId: 1,
+      UserId: this.UserSession.userId,
     };
 
     if (this.newLinkForm.valid) {
