@@ -27,6 +27,11 @@ export class AuthService implements OnInit {
   CheckIsAuth() {
     if (localStorage.getItem('session')) {
       this.isAuth.next(true);
+
+      return true;
+    }
+    else{
+      return false;
     }
   }
 
@@ -41,6 +46,7 @@ export class AuthService implements OnInit {
       sessionId: '1',
       token: '1',
       userId: user.userId,
+      username:user.username
     };
 
     localStorage.setItem('session', JSON.stringify(userSession));

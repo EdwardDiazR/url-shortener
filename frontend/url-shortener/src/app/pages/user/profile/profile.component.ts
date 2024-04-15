@@ -15,6 +15,11 @@ import { DeleteLinkModalComponent } from '../../../components/modals/delete-link
 import { NewLinkModalComponent } from '../../../components/modals/new-link-modal/new-link-modal.component';
 import { AuthService } from '../../../services/auth/auth.service';
 import { map } from 'rxjs';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -28,16 +33,20 @@ import { map } from 'rxjs';
     DividerComponent,
     DeleteLinkModalComponent,
     NewLinkModalComponent,
-    DecimalPipe,
+    DecimalPipe
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
+  animations:[MatSnackBarModule,BrowserAnimationsModule]
+  
 })
 export class ProfileComponent implements OnInit {
   constructor(
     private _linksService: LinksService,
     private _route: ActivatedRoute,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _clipboard: Clipboard,
+    private _snackBar:MatSnackBar
   ) {}
   isModalOpen: boolean = false;
 
@@ -70,7 +79,7 @@ export class ProfileComponent implements OnInit {
   goToUrl(url: string) {
     this._linksService.visitLink(url);
   }
-  
+
   //Function to logout and remove the session
   logout() {
     this._authService.logout();
@@ -99,5 +108,17 @@ export class ProfileComponent implements OnInit {
     this._linksService
       .getUserLinks(this.username)
       .subscribe({ next: (res) => (this.userLinks = res) });
+  }
+
+  copyUrl(url:string){
+    this._clipboard.copy(url);
+    this.openSnack()
+  }
+
+  openSnack(){
+    this._snackBar.open('Enlace copiado con exito','cancel',{
+      duration:3000
+    })
+
   }
 }

@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import { devenvironment } from '../../../environments/environment.development';
 import { CreateLinkDto, Link, UrlApiResponse } from '../../Models/link';
 
@@ -21,6 +21,18 @@ export class LinksService {
     });
   }
 
+  getLinkByUrlId(id: string) {
+    const parametros: HttpParams = new HttpParams({
+      fromObject: {
+        Url: id,
+      },
+    });
+
+    return this._http.get<UrlApiResponse>(this.baseUrl + '/get-full-url', {
+      params: parametros,
+    });
+  }
+
   visitLink(url: string) {
     const parametros: HttpParams = new HttpParams({
       fromObject: {
@@ -34,19 +46,19 @@ export class LinksService {
       })
       .subscribe({
         next: (res) => {
+          console.log(res);
+
           console.log(res.url);
           this.redirectToUrl(res.url);
+        },
+        error: (e) => {
+          return e.error;
         },
       });
   }
 
-  private redirectToUrl(url: string) {
-    const externalUrl = url; // Replace with the desired external URL
-    const anchor = document.createElement('a');
-    anchor.href = externalUrl;
-    anchor.target = '_blank'; // Optional: Opens the URL in a new tab
-    anchor.rel = 'noreferrer'; // Sets the noreferrer attribute
-    anchor.click();
+  redirectToUrl(url: string) {
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   createNewLink(linkDto: CreateLinkDto) {

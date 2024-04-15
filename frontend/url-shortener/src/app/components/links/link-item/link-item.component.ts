@@ -16,6 +16,8 @@ export class LinkItemComponent {
   @Input() Link!:Link
 
   goToUrl(url:string){
+    console.log(url);
+    
     this._linkService.visitLink(url);
   }
 

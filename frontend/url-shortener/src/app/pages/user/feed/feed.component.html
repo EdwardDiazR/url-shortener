@@ -39,4 +39,10 @@
     <span>{{ responseError }}</span>
   </div>
   }
+  <!--If user isn't logged, show this button suggesting to log in-->
+  @if(!isAuth){
+  <div class="login__bubble" [ngClass]="isOnTop ? '' : 'hide'">
+    <button [routerLink]="'/login'">Iniciar sesion o crear una cuenta</button>
+  </div>
+  }
 </main>

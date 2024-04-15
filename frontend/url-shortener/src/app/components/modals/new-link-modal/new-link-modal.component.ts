@@ -21,7 +21,7 @@ import { UserSession } from '../../../Models/user-session';
 @Component({
   selector: 'app-new-link-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass,InputTextModule],
+  imports: [ReactiveFormsModule, NgClass, InputTextModule],
   templateUrl: './new-link-modal.component.html',
   styleUrl: './new-link-modal.component.scss',
 })
@@ -37,7 +37,10 @@ export class NewLinkModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.newLinkForm = new FormGroup({
-      Url: new FormControl('', [Validators.required]),
+      Url: new FormControl('', [
+        Validators.required,
+        // Validators.pattern('https?://[\\w.-]+\\.\\w{2,}(?:/\\S*)?$'),
+      ]),
       Title: new FormControl('', [Validators.required]),
       UserId: new FormControl(null),
     });
@@ -61,6 +64,8 @@ export class NewLinkModalComponent implements OnInit, OnDestroy {
   }
 
   createNewLink() {
+    console.log(this.newLinkForm.status);
+
     console.log(this.newLinkForm.value);
 
     this.newLinkDto = <CreateLinkDto>{

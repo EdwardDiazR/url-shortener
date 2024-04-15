@@ -1,6 +1,6 @@
 <main class="main" [ngClass]="isModalOpen ? 'show-modal' : ''">
   <div class="top-controls">
-    <button [routerLink]="['/' + username]" class="go-to-feed__btn">
+    <button [routerLink]="['/user/' + username]" class="go-to-feed__btn">
       Ir al feed
     </button>
     <button class="close-section__btn" (click)="logout()">Cerrar sesion</button>
@@ -43,13 +43,14 @@
         <div class="info">
           <div class="form-control shortUrl-div">
             <span
-              ><a 
+              ><a
                 style="color: blue; text-decoration: underline"
                 (click)="goToUrl(link.shortUrl)"
+                href="{{ link.longUrl }}"
                 >{{ link.shortUrl }}</a
               ></span
             >
-            <button>
+            <button (click)="copyUrl(link.shortUrl)">
               <span>Copiar</span
               ><img src="../../../../assets/icons/copy-icon.png" />
             </button>
@@ -67,7 +68,7 @@
           </div>
           <div class="counters">
             <div class="form-control">
-              <label for="">Visitas</label
+              <label for="">Clicks</label
               ><span>{{ link.visitedTimes | number : ".0" }}</span>
             </div>
 

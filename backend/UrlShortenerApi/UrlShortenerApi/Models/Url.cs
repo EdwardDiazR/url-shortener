@@ -14,6 +14,8 @@ namespace UrlShortenerApi.Models
         [Column("url_title")]
         public string UrlTitle { get; set; }
 
+        public string UrlHash { get; set; }
+
         [Required]
         [Column("long_url")]
         public string LongUrl { get; set; }

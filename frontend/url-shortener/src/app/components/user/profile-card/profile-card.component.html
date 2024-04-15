@@ -12,7 +12,7 @@
     @if(isProfileOwner && username){
     <button
       class="go-to-my-profile__btn"
-      [routerLink]="['/' + username + '/profile']"
+      [routerLink]="['/user/' + username + '/profile']"
     >
       Ir a mi perfil</button
     >}

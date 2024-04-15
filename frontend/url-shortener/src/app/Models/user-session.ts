@@ -1,5 +1,6 @@
 export interface UserSession {
     sessionId:string;
     userId:number;
-    token:string
+    token:string;
+    username:string
 }

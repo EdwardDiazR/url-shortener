@@ -26,7 +26,7 @@ export class LoginComponent {
   });
 
   isFormSubmitted: boolean = false;
-  loginApiResponse!:string
+  loginApiResponse!: string;
 
   login() {
     this.isFormSubmitted = true;
@@ -44,10 +44,10 @@ export class LoginComponent {
 
           const user = res as User;
           this._authService.createSession(user);
-          this.router.navigate([`${user.username}/profile`]);
+          this.router.navigate([`/user/${user.username}/profile`]);
         },
         error: (error) => {
-          this.loginApiResponse = error.error
+          this.loginApiResponse = error.error;
           console.log(error.error);
         },
       });

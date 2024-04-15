@@ -60,7 +60,7 @@ namespace UrlShortenerApi.Services
 
         public UrlApiResponseDto GetFullUrl(string shortUrl)
         {
-            Url? url = _db.Url.Where(u => u.ShortUrl == shortUrl).FirstOrDefault();
+            Url? url = _db.Url.Where(u => u.ShortUrl == shortUrl || u.UrlHash == shortUrl).FirstOrDefault();
 
             if (url == null)
             {
@@ -86,7 +86,7 @@ namespace UrlShortenerApi.Services
         public string GenerateUserProfileLink(string username)
         {
 
-            string ProfileLinkUrl = $"{shortBaseUrl}/{username}";
+            string ProfileLinkUrl = $"{shortBaseUrl}/user/{username}";
 
             return ProfileLinkUrl;
 
@@ -144,6 +144,7 @@ namespace UrlShortenerApi.Services
                     UserId = UrlDto.UserId,
                     UrlTitle = UrlDto.Title,
                     LastTimeVisited = null,
+                    UrlHash = HashString
                 };
 
                 _db.Add(url);

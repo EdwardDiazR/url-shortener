@@ -3,7 +3,6 @@
   <div class="login">
     <h2 class="login-title">Iniciar sesion</h2>
     <form action="" class="login-form" [formGroup]="loginForm">
-
       <!--Show this error if user try login and there's an BAD API RESPONSE, Ex: Username or passowrd incorrect-->
       @if(isFormSubmitted && loginApiResponse){
       <span style="color: red; align-self: center">{{ loginApiResponse }}</span>
@@ -15,7 +14,7 @@
         ><input placeholder="Usuario" formControlName="username" />
 
         <!--Show error if user try to login and username is empty-->
-        @if((loginForm.touched || isFormSubmitted) && loginForm.get('username')?.errors){
+        @if(( isFormSubmitted) && loginForm.get('username')?.errors){
         <div class="username-error" style="color: red">
           Debe ingresar su nombre de usuario
         </div>
@@ -30,8 +29,7 @@
         />
 
         <!--Show error if user try to login and password is empty-->
-        @if((loginForm.touched || isFormSubmitted) &&
-        loginForm.get('password')?.errors){
+        @if(( isFormSubmitted) && loginForm.get('password')?.errors){
         <div class="password-error" style="color: red">
           Debe ingresar la contraseña
         </div>
