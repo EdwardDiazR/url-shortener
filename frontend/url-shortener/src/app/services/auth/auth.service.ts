@@ -58,7 +58,7 @@ export class AuthService implements OnInit {
     if (session) {
       this.UserSession = JSON.parse(session) as UserSession;
     }
-    let parametros = new HttpParams({
+    const parametros = new HttpParams({
       fromObject: {
         username: username,
         UserId: this.UserSession.userId,
