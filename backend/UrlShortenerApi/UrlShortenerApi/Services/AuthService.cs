@@ -53,6 +53,7 @@ namespace UrlShortenerApi.Services
                 UserProfileLink = _shortenerService.GenerateUserProfileLink(userDto.username),
                 Gender = userDto.Gender,
                 ProfilePictureUrl = "",
+                ProfileDescription = " "
 
             };
 

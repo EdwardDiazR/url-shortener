@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LinksService } from '../../../services/links/links.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BrandBannerComponent } from '../../../components/shared/brand-banner/brand-banner.component';
 
 @Component({
   selector: 'app-redirect',
   standalone: true,
-  imports: [],
+  imports: [BrandBannerComponent],
   templateUrl: './redirect.component.html',
   styleUrl: './redirect.component.scss',
 })

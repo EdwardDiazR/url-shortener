@@ -1,10 +1,14 @@
 <div class="redirect-page__container">
-  @if(isRedirecting && !errorResponse){
-  <div class="redirecting-message__loading">
-    <div class="loading-spinner"></div>
-    <span>Llevandote a tu destino</span>
+  <app-brand-banner style="width: 100%;"></app-brand-banner>
+
+  <div class="content-wrapper">
+    @if(isRedirecting && !errorResponse){
+    <div class="redirecting-message__loading">
+      <div class="loading-spinner"></div>
+      <span>Llevandote a tu destino</span>
+    </div>
+    } @if(!isRedirecting&&errorResponse){
+    <span>{{ errorResponse }}</span>
+    }
   </div>
-  } @if(!isRedirecting&&errorResponse){
-  <span>{{ errorResponse }}</span>
-  }
 </div>
