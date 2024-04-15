@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LinksService } from '../../../services/links/links.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandBannerComponent } from '../../../components/shared/brand-banner/brand-banner.component';
+import { AuthService } from '../../../services/auth/auth.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-redirect',
@@ -13,6 +15,7 @@ import { BrandBannerComponent } from '../../../components/shared/brand-banner/br
 export class RedirectComponent implements OnInit {
   constructor(
     private _linkService: LinksService,
+    private _authService: AuthService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {}
@@ -23,7 +26,6 @@ export class RedirectComponent implements OnInit {
 
   ngOnInit(): void {
     this.url = this._route.snapshot.params['url'];
-    console.log(this.url);
 
     switch (this.url) {
       case 'login':
@@ -46,8 +48,10 @@ export class RedirectComponent implements OnInit {
             this.openUrl(res.url);
           },
           error: (error) => {
+            console.log(error);
+            
             this.isRedirecting = false;
-            this.errorResponse = error.error;
+            this.errorResponse = error.status ? error.error : error.statusText;
           },
         });
     }

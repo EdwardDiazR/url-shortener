@@ -44,13 +44,13 @@
           <div class="form-control shortUrl-div">
             <span
               ><a
-                style="color: blue; text-decoration: underline"
+                style="color: blue; text-decoration: underline;cursor: pointer;"
                 (click)="goToUrl(link.shortUrl)"
-                href="{{ link.longUrl }}"
+              
                 >{{ link.shortUrl }}</a
               ></span
             >
-            <button (click)="copyUrl(link.shortUrl)">
+            <button (click)="copyUrl(link.shortUrl)" class="copy-url__btn">
               <span>Copiar</span
               ><img src="../../../../assets/icons/copy-icon.png" />
             </button>

@@ -17,9 +17,6 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { map } from 'rxjs';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 
 @Component({
   selector: 'app-profile',
@@ -33,12 +30,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DividerComponent,
     DeleteLinkModalComponent,
     NewLinkModalComponent,
-    DecimalPipe
+    DecimalPipe,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
-  animations:[MatSnackBarModule,BrowserAnimationsModule]
-  
+  animations: [MatSnackBarModule],
 })
 export class ProfileComponent implements OnInit {
   constructor(
@@ -46,7 +42,7 @@ export class ProfileComponent implements OnInit {
     private _route: ActivatedRoute,
     private _authService: AuthService,
     private _clipboard: Clipboard,
-    private _snackBar:MatSnackBar
+    private _snackBar: MatSnackBar
   ) {}
   isModalOpen: boolean = false;
 
@@ -110,15 +106,14 @@ export class ProfileComponent implements OnInit {
       .subscribe({ next: (res) => (this.userLinks = res) });
   }
 
-  copyUrl(url:string){
+  copyUrl(url: string) {
     this._clipboard.copy(url);
-    this.openSnack()
+    // this.openSnack()
   }
 
-  openSnack(){
-    this._snackBar.open('Enlace copiado con exito','cancel',{
-      duration:3000
-    })
-
+  openSnack() {
+    this._snackBar.open('Enlace copiado con exito', 'cancel', {
+      duration: 3000,
+    });
   }
 }

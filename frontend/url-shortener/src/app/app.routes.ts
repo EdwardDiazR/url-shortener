@@ -8,11 +8,18 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { RedirectComponent } from './pages/url/redirect/redirect.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { loginGuard } from './guards/login/login.guard';
+import { Type, inject } from '@angular/core';
+import { userRedirectGuard } from './guards/redirect/user-redirect.guard';
+import { AuthService } from './services/auth/auth.service';
 
 export const routes: Routes = [
-  { path: '', component:LandingPageComponent },
-   {path:':url',component:RedirectComponent},
-  { path: 'auth/login', component: LoginComponent,canActivate:[loginGuard] },
+  { path: '', component: LandingPageComponent },
+  {
+    path: ':url',
+    component: RedirectComponent,
+    canActivate: [userRedirectGuard],
+  },
+  { path: 'auth/login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'user/:username', component: FeedComponent },
   {
     path: 'user/:username/profile',

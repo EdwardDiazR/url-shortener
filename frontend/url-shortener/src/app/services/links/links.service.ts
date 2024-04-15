@@ -48,6 +48,10 @@ export class LinksService {
         next: (res) => {
           console.log(res);
 
+          if (!res.url.includes('http' || 'https')) {
+            res.url = `https://${res.url}`;
+          }
+
           console.log(res.url);
           this.redirectToUrl(res.url);
         },

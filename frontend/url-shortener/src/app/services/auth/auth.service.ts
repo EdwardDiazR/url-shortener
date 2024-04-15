@@ -69,6 +69,17 @@ export class AuthService implements OnInit {
     });
   }
 
+  checkUser(username:string){
+    const parametros = new HttpParams({
+      fromObject: {
+        parameter: username,
+      },
+    });
+    return this._http.get<boolean>(this.API_BASE + '/is-user', {
+      params: parametros,
+    });
+  }
+
   logout() {
     localStorage.removeItem('session');
     this._router.navigateByUrl('/login');

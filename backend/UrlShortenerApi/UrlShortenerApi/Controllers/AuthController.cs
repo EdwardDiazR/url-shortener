@@ -29,6 +29,18 @@ namespace UrlShortenerApi.Controllers
             }
         }
 
+        [HttpGet("is-user")]
+        public ActionResult CheckIfIsUser(string parameter) {
+            try
+            {
+                return Ok(_authService?.CheckIfIsUser(parameter));
+
+            }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("register")]
         public ActionResult<User> RegisterUser(RegisterUserDto registerUserDto)
         {

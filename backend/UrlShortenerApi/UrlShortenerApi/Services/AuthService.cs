@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 using System.Text;
 using UrlShortenerApi.Data;
 using UrlShortenerApi.Interfaces;
@@ -28,6 +29,12 @@ namespace UrlShortenerApi.Services
             }
 
             return user;
+        }
+
+        public bool CheckIfIsUser(string parameter)
+        {
+            bool urlDoesntExists = _db.Url.Any(u => u.UrlHash == parameter);
+            return _db.User.Any(user => user.Username == parameter && !urlDoesntExists);
 
         }
 

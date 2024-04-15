@@ -1,14 +1,17 @@
 <div class="redirect-page__container">
-  <app-brand-banner style="width: 100%;"></app-brand-banner>
+  <app-brand-banner style="width: 100%"></app-brand-banner>
 
   <div class="content-wrapper">
-    @if(isRedirecting && !errorResponse){
     <div class="redirecting-message__loading">
+      @if(isRedirecting && !errorResponse){
       <div class="loading-spinner"></div>
-      <span>Llevandote a tu destino</span>
+      <span class="loading-message">Llevandote a tu destino</span>}
+      @if(!isRedirecting&&errorResponse){
+      <div class="error-container">
+        <img src="https://img.icons8.com/?size=256&id=45967&format=png" />
+        <span class="error-message">{{ errorResponse }}</span>
+      </div>
+      }
     </div>
-    } @if(!isRedirecting&&errorResponse){
-    <span>{{ errorResponse }}</span>
-    }
   </div>
 </div>

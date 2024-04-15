@@ -8,6 +8,8 @@ namespace UrlShortenerApi.Interfaces
     {
         public User Login(LoginDto loginDto);
         public User RegisteUser(RegisterUserDto userDto);
+        public bool CheckIfIsUser(string parameter);
+
         public bool CheckIfProfileIsLogged(int userId, string username);
         
     }

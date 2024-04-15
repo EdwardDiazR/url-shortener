@@ -6,12 +6,14 @@ import { LinksService } from '../../../services/links/links.service';
 import {
   ActivatedRoute,
   ActivatedRouteSnapshot,
+  Router,
   RouterLink,
 } from '@angular/router';
 import { DividerComponent } from '../../../components/divider/divider.component';
 import { AuthService } from '../../../services/auth/auth.service';
 import { NgClass } from '@angular/common';
 import { BrandBannerComponent } from '../../../components/shared/brand-banner/brand-banner.component';
+import { userRedirectGuard } from '../../../guards/redirect/user-redirect.guard';
 
 @Component({
   selector: 'app-feed',
@@ -31,7 +33,8 @@ export class FeedComponent implements OnInit {
   constructor(
     private _links: LinksService,
     private _authService: AuthService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router
   ) {}
 
   links!: Link[];
@@ -44,8 +47,17 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.onScroll();
-    this.username = this._route.snapshot.params['username'];
+
+    this.username =
+      this._route.snapshot.params[
+        this._route.snapshot.routeConfig?.path == ':url' ? 'url' : 'username'
+      ];
+    console.log(this.username);
+
+    // this.username = this._route.snapshot.params['username' || 'url'];
     this.getLinks();
+    
+    
 
     if (this._authService.CheckIsAuth()) {
       this.isAuth = true;
