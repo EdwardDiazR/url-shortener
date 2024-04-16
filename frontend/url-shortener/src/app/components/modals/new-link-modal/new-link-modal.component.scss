@@ -14,14 +14,16 @@
 
 .modal {
   background-color: rgba(0, 0, 0, 0.504);
+  backdrop-filter: var(--BackdropBlur);
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 25px;
   position: absolute;
   z-index: 99999;
   min-height: 100vh;
   height: 100%;
+  
   top: 0;
   bottom: 0;
   right: 0;
@@ -37,8 +39,21 @@
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
+    
     // font-size: 1.3em;
     gap: 5px;
+    animation: appear 0.3s;
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        scale: 0;
+      }
+      to {
+        scale: 1;
+        opacity: 1;
+      }
+    }
 
     h4 {
       margin: 0;
@@ -60,6 +75,7 @@
       width: 100%;
       border: transparent;
       border-radius: 5px;
+      cursor: pointer;
       //   background-color: gray;
     }
   }
@@ -70,5 +86,16 @@
     background-color: green;
     color: white;
     font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal {
+    padding: 0 var(--MiddleOfPagePadding);
+    justify-content: center;
+    form{
+      max-width: 50%;
+    }
   }
 }

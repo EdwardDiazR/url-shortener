@@ -5,6 +5,7 @@
   gap: 10px;
   background: transparent;
   padding: 0;
+  padding-top: 100px;
   margin: 0;
   min-height: 100vh;
   .hide {
@@ -13,6 +14,14 @@
 
   .show {
     display: flex;
+  }
+  .brand-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    z-index: 10000;
   }
 
   .login__bubble {
@@ -25,7 +34,7 @@
     height: 45px;
     margin: 5px;
     transition: 0.15s ease-in-out;
-
+    
     button {
       box-sizing: border-box;
       padding: 5px;
@@ -126,6 +135,16 @@
 
     span {
       text-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .feed-container {
+    margin: 0 var(--MiddleOfPagePadding);
+    justify-content: center;
+    .brand-banner {
+      margin: 0 var(--MiddleOfPagePadding);
     }
   }
 }

@@ -7,36 +7,26 @@
     hsla(14, 93%, 53%, 1) 0%,
     hsla(30, 84%, 58%, 1) 100%
   );
+
+  --MiddleOfPagePadding: 180px;
+  --BackdropBlur: blur(10px);
 }
-
-
+body::view-transition-new() {
+  animation: enter 0.5s ease-in 0s 1 normal forwards;
+}
 @keyframes enter {
   from {
     opacity: 0;
   }
 }
+
 * {
   font-family: "Overpass", sans-serif;
   font-optical-sizing: auto;
-  ::view-transition-new(*){
-    animation: enter 0.5s ease-in 0s 1 normal forwards;
-  } 
-  
 }
-
-
-
 
 body {
   margin: 0;
   padding: 0;
   background: var(--BlueGradient);
-}
-
-@media screen and (min-width: 1024px) {
-  html,
-  body {
-    padding: 0 140px;
-    justify-content: center;
-  }
 }

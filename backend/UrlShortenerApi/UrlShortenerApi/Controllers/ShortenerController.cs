@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,7 +16,12 @@ namespace UrlShortenerApi.Controllers
     public class ShortenerController : ControllerBase
     {
         private IShortenerService _service;
-        public ShortenerController(IShortenerService shortenerService) { _service = shortenerService; }
+        private IJwtService _jwtService;
+        public ShortenerController(IShortenerService shortenerService, IJwtService jwtService)
+        {
+            _jwtService = jwtService;
+            _service = shortenerService;
+        }
 
         [HttpGet("urls")]
         public ActionResult<List<Url>> GetUrlsByUsername(string username)
@@ -26,11 +32,9 @@ namespace UrlShortenerApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
-
-        
 
         [HttpGet("get-full-url")]
         public ActionResult<UrlApiResponseDto> GetFullUrl(string Url)
@@ -73,7 +77,21 @@ namespace UrlShortenerApi.Controllers
             }
         }
 
+        [HttpGet("get-jwt")]
+        public ActionResult GetToken(int userId,string username)
+        {
+            try
+            {
+                return Ok(_jwtService.GenerateJWT(userId,username));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete("delete")]
+     
         public ActionResult DeleteShortUrl(int UrlId, int UserId)
         {
             try

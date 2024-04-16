@@ -56,8 +56,6 @@ export class FeedComponent implements OnInit {
 
     // this.username = this._route.snapshot.params['username' || 'url'];
     this.getLinks();
-    
-    
 
     if (this._authService.CheckIsAuth()) {
       this.isAuth = true;
@@ -93,8 +91,12 @@ export class FeedComponent implements OnInit {
           this.links = res;
         },
         error: (e) => {
-          this.responseError = e.error;
-          console.log(e.error);
+          console.log(e.status);
+
+          this.responseError = e.status
+            ? e.error
+            : 'En estos momentos no podemos gestionar tu requerimiento, intentalo mas tarde!';
+          console.error(e.error);
         },
       });
     }

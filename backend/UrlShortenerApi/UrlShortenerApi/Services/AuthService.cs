@@ -13,15 +13,19 @@ namespace UrlShortenerApi.Services
     {
         private readonly ApplicationDbContext _db;
         private IShortenerService _shortenerService;
-        public AuthService(ApplicationDbContext db, IShortenerService shortenerService)
+        private IJwtService _jwtService;
+        public AuthService(ApplicationDbContext db, IShortenerService shortenerService, IJwtService jwtService)
         {
             _db = db;
             _shortenerService = shortenerService;
+            _jwtService = jwtService;
         }
         public User Login(LoginDto loginDto)
         {
             string HashedPassword = HashPassword(loginDto.password);
             User? user = _db.User.Where(user => user.Username == loginDto.username && user.password == HashedPassword).FirstOrDefault();
+            string token = _jwtService.GenerateJWT(user.UserId, user.Username);
+            //TODO: Create a Login respons DTO and pass User and Token
 
             if (user is null)
             {
@@ -45,7 +49,7 @@ namespace UrlShortenerApi.Services
                 throw new Exception($"{userDto.username} ya esta siendo utilizado por otro usuario, intenta con uno diferente");
             }
 
-            if(userDto.Password != userDto.ConfirmedPassword)
+            if (userDto.Password != userDto.ConfirmedPassword)
             {
                 throw new Exception("Las contraseñas no coinciden");
             }
