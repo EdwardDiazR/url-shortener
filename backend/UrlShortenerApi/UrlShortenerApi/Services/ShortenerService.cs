@@ -36,11 +36,14 @@ namespace UrlShortenerApi.Services
             //TODO: CHANGE TO USER NAME LATER WHEN CREATE USER DB DATA
             User? user = _db.User.FirstOrDefault(x => x.Username == Username);
 
-            if (user is null)
-            {
-                throw new Exception("El usuario solicitado no se encontró, Verifica e inténtalo de nuevo. ");
-            }
-            List<Url> urls = _db.Url.Where(url => url.UserId == user.UserId).OrderByDescending(url => url.CreatedDate).ToList();
+
+            ArgumentNullException.ThrowIfNull(user, "El usuario solicitado no se encontró, Verifica e inténtalo de nuevo.");
+            //if (user is null)
+            //{
+            //    throw new Exception("El usuario solicitado no se encontró, Verifica e inténtalo de nuevo. ");
+            //}
+            List<Url> urls = _db.Url.Where(url => url.UserId == user.UserId)
+                .OrderByDescending(url => url.CreatedDate).ToList();
 
             //TODO: If user doesn't exists throw an exception
 

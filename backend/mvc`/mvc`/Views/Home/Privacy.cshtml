@@ -1,0 +1,19 @@
+﻿@model Account
+
+@{
+    ViewData["Title"] = "Detalle de cuenta";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<ul class="flex-column list-unstyled">
+    <li><span class="fw-bold">Balance:</span> @Model.Balance</li>
+    <li><span class="fw-bold">Cliente:</span>  @Model.CustomerId</li>
+
+    @if (Model.Balance > 100000)
+    {
+        <li>@Model.customer.Name</li>
+    }
+</ul>
+

@@ -24,7 +24,11 @@ namespace UrlShortenerApi.Services
         {
             string HashedPassword = HashPassword(loginDto.password);
             User? user = _db.User.Where(user => user.Username == loginDto.username && user.password == HashedPassword).FirstOrDefault();
-            string token = _jwtService.GenerateJWT(user.UserId, user.Username);
+
+            if (user is not null)
+            {
+                string token = _jwtService.GenerateJWT(user.UserId, user.Username);
+            }
             //TODO: Create a Login respons DTO and pass User and Token
 
             if (user is null)
