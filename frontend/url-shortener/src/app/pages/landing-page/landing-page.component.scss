@@ -1,0 +1,18 @@
+html{
+    scroll-behavior: smooth;
+}
+
+.landing-container{
+    background-color: var(--BlueGradient);
+    min-height: 100vh;
+
+    .about{
+        min-height: 100vh;
+        background-color: white;
+    }
+
+    .user-stories{
+        background-color: red;
+       min-height: 100vh;
+    }
+}

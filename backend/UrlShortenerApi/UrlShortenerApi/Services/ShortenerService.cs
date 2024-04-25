@@ -45,6 +45,12 @@ namespace UrlShortenerApi.Services
             List<Url> urls = _db.Url.Where(url => url.UserId == user.UserId)
                 .OrderByDescending(url => url.CreatedDate).ToList();
 
+            var a = _db.Url.Where(url => url.UserId == user.UserId)
+                .Select(c => new { c.CreatedDate })
+                .OrderByDescending(url => url.CreatedDate)
+                .ToList();
+
+
             //TODO: If user doesn't exists throw an exception
 
             return urls;
@@ -52,6 +58,7 @@ namespace UrlShortenerApi.Services
 
         public Url GetUrlDetailsById(int UrlId, int UserId)
         {
+            
             Url? url = _db.Url.FirstOrDefault(url => url.Id == UrlId && url.UserId == UserId);
             if (url == null)
             {
@@ -121,7 +128,7 @@ namespace UrlShortenerApi.Services
             Console.WriteLine(timeZone);
             string FinalShortUrl;
             string FullShortUrl;
-        
+
 
             try
             {

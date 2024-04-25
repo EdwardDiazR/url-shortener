@@ -112,6 +112,7 @@ namespace UrlShortenerApi.Services
                 {
                     builder.Append(hash[i].ToString("x2"));
                 }
+
                 return builder.ToString();
             }
         }
